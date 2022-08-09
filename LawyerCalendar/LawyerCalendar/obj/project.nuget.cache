@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5iolRaqjm26jTJcWI0FeM+/060p0EA5T6RMGCwde75T5J3bDGSrAhuGQc0MLevFTa9Z1FguqqPv/xuk7zlDnow==",
+  "success": true,
+  "projectFilePath": "I:\\Nueva carpeta (2)\\UNED\\PROGRAMACION AVANZADA EN WEB\\Tarea3\\LawyerCalendar\\LawyerCalendar\\LawyerCalendar.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
