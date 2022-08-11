@@ -39,3 +39,8 @@ INSERT INTO Specialties(Name) VALUES
 ('Civil'),
 ('Comercio'),
 ('Notariado')
+
+INSERT INTO PaymentMethod(Name) VALUES
+('Tarjeta'),
+('Depósito'),
+('SINPE')
