@@ -24,7 +24,7 @@ namespace LawyerCalendar.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserViewModel user)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !_ValidateAge(user.BirthDate))
                 return View();
 
             User userEF = new User()
@@ -40,5 +40,7 @@ namespace LawyerCalendar.Controllers
             await _context.SaveChangesAsync();
             return Redirect(@"/");
         }
+
+        private bool _ValidateAge(DateTime birthDate) => DateTime.Now.AddYears(-15) < birthDate;
     }
 }
