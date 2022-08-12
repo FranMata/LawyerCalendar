@@ -1,4 +1,5 @@
 using LawyerCalendar.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,11 @@ namespace LawyerCalendar
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                AddCookie(o =>
+                {
+                    o.LoginPath = "/login/index";
+                });
             services.AddDbContext<LawyerCalendarContext>(e =>
             {
                 e.UseSqlServer(Configuration.GetConnectionString("LawyerCalendarContext"));
@@ -49,14 +55,14 @@ namespace LawyerCalendar
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
