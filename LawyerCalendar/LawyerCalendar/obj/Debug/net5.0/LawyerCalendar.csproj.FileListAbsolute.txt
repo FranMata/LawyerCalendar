@@ -68,3 +68,5 @@ I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\Law
 I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\LawyerCalendar\obj\Debug\net5.0\LawyerCalendar.pdb
 I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\LawyerCalendar\obj\Debug\net5.0\LawyerCalendar.genruntimeconfig.cache
 I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\LawyerCalendar\obj\Debug\net5.0\Razor\Views\CreateUser\Index.cshtml.g.cs
+I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\LawyerCalendar\obj\Debug\net5.0\Razor\Views\Appointment\CreateAppointment.cshtml.g.cs
+I:\Nueva carpeta (2)\UNED\PROGRAMACION AVANZADA EN WEB\Tarea3\LawyerCalendar\LawyerCalendar\obj\Debug\net5.0\Razor\Views\Appointment\Index.cshtml.g.cs
