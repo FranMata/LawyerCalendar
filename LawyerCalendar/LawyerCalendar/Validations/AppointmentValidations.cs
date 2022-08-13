@@ -15,7 +15,7 @@ namespace LawyerCalendar.BusinessLogic
                 return new ValidationResult("El horario de atencion es de 8am a 11am y de 1pm a 4pm");
             if(_IsInvalidMinutes(appointmentDate))
                 return new ValidationResult("Todas las citas se dan a la hora en punto"); 
-            if(_IsOnRange(appointmentDate))
+            if(!_IsOnRange(appointmentDate))
                 return new ValidationResult("Solo puede gestionar citas desde el día siguiente y a más tardar 22 días después");
             return ValidationResult.Success;
         }
@@ -25,7 +25,7 @@ namespace LawyerCalendar.BusinessLogic
         private bool _IsOnAttentionHours(DateTime date)
         {
             int hour = date.Hour;
-            return hour >= 8 && hour <= 11 && hour >= 1 && hour <= 4;
+            return (hour >= 8 && hour <= 11) || (hour >= 13 && hour <= 16);
         }
 
         private bool _IsInvalidMinutes(DateTime date) => date.Minute != 00;

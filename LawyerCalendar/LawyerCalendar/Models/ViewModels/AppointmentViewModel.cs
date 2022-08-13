@@ -6,7 +6,7 @@ namespace LawyerCalendar.Models.ViewModels
 {
     public class AppointmentViewModel
     {
-        public int Id { get; set; }        
+        public int Id { get; set; }
         public int UserId { get; set; }
         [Required]
         [Display(Name = "Fecha")]
@@ -15,5 +15,8 @@ namespace LawyerCalendar.Models.ViewModels
         [Required]
         [Display(Name = "Especialidad")]
         public int SpecialtyId { get; set; }
+        public string SpecialtyName { get; set; }
+        public string State { get; set; }
     }
+
 }

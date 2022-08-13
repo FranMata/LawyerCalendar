@@ -1,12 +1,18 @@
-﻿using LawyerCalendar.Models;
+﻿using LawyerCalendar.Helpers;
+using LawyerCalendar.Models;
 using LawyerCalendar.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
 namespace LawyerCalendar.Controllers
 {
+    //[Authorize]
     public class AppointmentController : Controller
     {
         private LawyerCalendarContext _context;
@@ -15,7 +21,27 @@ namespace LawyerCalendar.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Appointment> appointmentsEF = _context
+                .Appointments
+                .Include(e => e.Specialty)
+                .Where(e => e.UserId == 1)
+                .ToList()
+                .OrderByDescending(e => Convert.ToDateTime(e.Date).Date)
+                .ToList();
+            List<AppointmentViewModel> appointments = AppointmentHelper.ViewModelBuilder(appointmentsEF);
+            return View(appointments);
+        }
+
+        public IActionResult DeleteAppointment(int id)
+        {
+            Appointment appointmentToDelete = _context.Appointments.FirstOrDefault(e => e.Id == id);
+
+            if(appointmentToDelete != null)
+            {
+                _context.Appointments.Remove(appointmentToDelete);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult CreateAppointment()
@@ -43,7 +69,7 @@ namespace LawyerCalendar.Controllers
 
             Appointment appointmentEF = new Appointment()
             {
-                //UserId = TODO: obtener el id del usu4rio de la cookie
+                UserId = 1,
                 Date = appointment.Date.ToShortDateString(),
                 SpecialtyId = appointment.SpecialtyId
             };
@@ -52,6 +78,5 @@ namespace LawyerCalendar.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
