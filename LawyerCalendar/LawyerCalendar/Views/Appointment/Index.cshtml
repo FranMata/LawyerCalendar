@@ -1,1 +1,42 @@
-﻿<a asp-action="CreateAppointment">Agendar cita</a>
+﻿@using LawyerCalendar.Models.ViewModels;
+@model List<AppointmentViewModel>;
+
+
+@if (Model == null)
+{
+    <h1>No tiene historial de citas</h1>
+}
+else
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Especialidad</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (AppointmentViewModel appointment in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(e => appointment.Id)</td>
+                    <td>@Html.DisplayFor(e => appointment.Date)</td>
+                    <td>@Html.DisplayFor(e => appointment.SpecialtyName)</td>
+                    <td>@Html.DisplayFor(e => appointment.State)</td>
+                    <td>
+                        @if (appointment.State.Equals("Activo"))
+                        {
+                            <button type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("DeleteAppointment", "Appointment", new {id = appointment.Id})'">Eliminar</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+}
