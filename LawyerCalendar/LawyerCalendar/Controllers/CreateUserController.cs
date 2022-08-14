@@ -24,8 +24,8 @@ namespace LawyerCalendar.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserViewModel user)
         {
-            if (!ModelState.IsValid || !_ValidateAge(user.BirthDate))
-                return View();
+            if (!ModelState.IsValid || _ValidateAge(user.BirthDate))
+                return View(user);
 
             User userEF = new User()
             {

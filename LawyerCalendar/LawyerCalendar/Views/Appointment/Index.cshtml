@@ -30,8 +30,8 @@ else
                     <td>@Html.DisplayFor(e => appointment.State)</td>
                     <td>
                         @if (appointment.State.Equals("Activo"))
-                        {
-                            <button type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("DeleteAppointment", "Appointment", new {id = appointment.Id})'">Eliminar</button>
+                        {         
+                            <a href="@Url.Action("DeleteAppointment", "Appointment", new {id = appointment.Id})" class="btn btn-danger" onclick="return confirm ('¿Desea eliminar la cita?');">Eliminar</a>
                         }
                     </td>
                 </tr>

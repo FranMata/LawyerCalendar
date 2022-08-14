@@ -3,6 +3,7 @@ using LawyerCalendar.Models;
 using LawyerCalendar.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -57,8 +58,7 @@ namespace LawyerCalendar.Controllers
 
             if (isspaceAvailable)
             {
-                //TODO: mostrar mensaje
-                return View();
+                return Content("<script language='javascript' type='text/javascript'>alert('No hay espacio disponible para la fecha y hora especificado');</script>");
             }
 
             if (!ModelState.IsValid)
