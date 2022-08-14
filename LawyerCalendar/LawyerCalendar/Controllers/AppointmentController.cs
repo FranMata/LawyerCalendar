@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace LawyerCalendar.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AppointmentController : Controller
     {
         private LawyerCalendarContext _context;
@@ -21,11 +21,11 @@ namespace LawyerCalendar.Controllers
         public AppointmentController(LawyerCalendarContext context) => _context = context;
 
         public IActionResult Index()
-        {
+        {            
             List<Appointment> appointmentsEF = _context
                 .Appointments
                 .Include(e => e.Specialty)
-                .Where(e => e.UserId == 1)
+                .Where(e => e.UserId == _GetUserId())
                 .ToList()
                 .OrderByDescending(e => Convert.ToDateTime(e.Date).Date)
                 .ToList();
@@ -69,7 +69,7 @@ namespace LawyerCalendar.Controllers
 
             Appointment appointmentEF = new Appointment()
             {
-                UserId = 1,
+                UserId = _GetUserId(),
                 Date = appointment.Date.ToShortDateString(),
                 SpecialtyId = appointment.SpecialtyId
             };
@@ -78,5 +78,7 @@ namespace LawyerCalendar.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        private int _GetUserId() => Convert.ToInt32(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
     }
 }
